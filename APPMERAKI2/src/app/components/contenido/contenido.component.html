@@ -1,0 +1,114 @@
+<div class="w3-container"
+    style="display: flex; flex-wrap:wrap; justify-content: space-evenly;padding: 20px;width: 100%;height: 100%;">
+    <div
+        style="background:#3c3c3c;opacity:0.8;align-items: center; height:fit-content;margin-top: 45px;margin-right: 10px;;flex:auto 1 1;width: 250px; border-radius: 5px;">
+        <ol class="w3-container w3-margin">
+
+            <div class="cabezera">
+                <img src="../../../assets/imagens/lenguajes.png" style="width: 50px;float: left;margin:auto;">
+                <!--                 <mat-icon class="icono" [inline]="true">computer</mat-icon>-->
+                <h2>Lenguajes</h2>
+            </div>
+            <!-- ngfor -->
+            <mat-accordion *ngFor="let item of lenguajes; let i = index" style="align-items: center;margin: auto;">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <div class="punto"
+                            [ngClass]="{'w3-green': item['level'] === 'basico', 'w3-amber':  item['level']  === 'intermedio', 'w3-purple':  item['level']  === 'avanzado'}">
+                        </div>
+                        <mat-panel-title style="justify-content:center">
+                            {{item.nombre}}
+                        </mat-panel-title>
+                        <img src="{{item.url}}" width="20px" style="align-items: center;padding: 0px 20px;">
+                    </mat-expansion-panel-header>
+                    <mat-divider class="w3-white"></mat-divider>
+                    <mat-panel-description style="margin: auto;justify-content: space-evenly;">
+                        <button (click)="changeColorLanguages(i, 'basico')"
+                            style="margin-top: 10px;width: 20px;font-size:9px;justify-content: center;" class="w3-green"
+                            mat-button>Basico</button>
+                        <button (click)="changeColorLanguages(i, 'intermedio')"
+                            style="margin-top: 10px;margin-left: 3px;margin-right: 3px; width: 20px;font-size:9px;text-align: center;"
+                            class="w3-orange" mat-button>Intermedio</button>
+                        <button (click)="changeColorLanguages(i, 'avanzado')"
+                            style="margin-top: 10px;width: 20px;font-size:9px;justify-content: center;"
+                            class="w3-purple" mat-button>Avanzado</button>
+                    </mat-panel-description>
+                </mat-expansion-panel>
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                </mat-expansion-panel>
+            </mat-accordion>
+        </ol>
+    </div>
+    <div
+        style="background:#3c3c3c;opacity:0.8;align-items: center; height:fit-content;margin-top: 45px;margin-left: 10px;margin-right: 10px;;flex:auto 1 1;width: 250px;border-radius: 5px;">
+        <ol class="w3-container w3-margin">
+            <div class="cabezera">
+                <img src="../../../assets/imagens/cloud.png" style="width: 50px;float: left;margin:auto;">
+                <h2>Google. Cloud</h2>
+            </div>
+            <mat-accordion *ngFor="let clo of clouds ; let c = index" style="align-items: center;margin: auto;">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header class="w3-container w3-center-align">
+                        <div [ngClass]="{'w3-green': clo['level'] === 'basico', 'w3-amber':clo['level'] === 'intermedio', 'w3-purple':  clo['level'] === 'avanzado'}"
+                            class="punto">
+                        </div>
+                        <mat-panel-title style="justify-content:center">
+                            {{clo.nombre}}
+                        </mat-panel-title>
+                        <img src="{{clo.url}}" width="20px" style="justify-content: center;padding: 0px 13px;">
+                    </mat-expansion-panel-header>
+                    <mat-divider class="w3-white"></mat-divider>
+                    <mat-panel-description style="margin: auto;justify-content: space-evenly;">
+                        <button (click)="changeColorClouds(c,'basico')"
+                            style="margin-top: 10px;width: 20px;font-size:9px;justify-content: center;" class="w3-green"
+                            mat-button>Basico</button>
+                        <button (click)="changeColorClouds(c,'intermedio')"
+                            style="margin-top: 10px;margin-left: 3px;margin-right: 3px; width: 20px;font-size:9px;text-align: center;"
+                            class="w3-orange" mat-button>Intermedio</button>
+                        <button (click)="changeColorClouds(c,'avanzado')"
+                            style="margin-top: 10px;width: 20px;font-size:9px;justify-content: center;"
+                            class="w3-purple" mat-button>Avanzado</button>
+                    </mat-panel-description>
+                </mat-expansion-panel>
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                </mat-expansion-panel>
+            </mat-accordion>
+        </ol>
+    </div>
+    <div
+        style="background:#3c3c3c;opacity:0.8;align-items: center;height:fit-content;margin-top: 45px;margin-left:10px;flex:auto 1 1;width: 250px;border-radius: 5px;">
+        <ol class="w3-container w3-margin">
+            <div class="cabezera">
+                <img src="../../../assets/imagens/frame.png" style="width: 50px;float: left;margin:auto;">
+                <h2>Frameworks</h2>
+            </div>
+            <mat-accordion *ngFor="let frame of frameworks ; let f = index">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header class="w3-container w3-center-align">
+                        <div [ngClass]="{'w3-green': frame['level'] === 'basico', 'w3-amber':frame['level'] === 'intermedio', 'w3-purple':  frame['level'] === 'avanzado'}"
+                            class="punto"></div>
+                        <mat-panel-title style="justify-content:center">
+                            {{frame.nombre}}
+                        </mat-panel-title>
+                        <img src="{{frame.url}}" width="20px" style="align-items: center;padding: 0px 13px;">
+                    </mat-expansion-panel-header>
+                    <mat-divider class="w3-white"></mat-divider>
+                    <mat-panel-description style="margin: auto;justify-content:space-evenly;text-align: center;">
+                        <button (click)="changeColorFrameworks(f,'basico')"
+                            style="margin-top: 10px;width: 20px;font-size:9px;justify-content: center;" class="w3-green"
+                            mat-button>Basico</button>
+                        <button (click)="changeColorFrameworks(f,'intermedio')"
+                            style="margin-top: 10px;margin-left: 3px;margin-right: 3px; width: 20px;font-size:9px;justify-content: center;"
+                            class="w3-orange" mat-button>Intermedio</button>
+                        <button (click)="changeColorFrameworks(f,'avanzado')"
+                            style="margin-top: 10px;width: 20px;font-size:9px;justify-content: center" class="w3-purple"
+                            mat-button>Avanzado</button>
+                    </mat-panel-description>
+                </mat-expansion-panel>
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                </mat-expansion-panel>
+            </mat-accordion>
+        </ol>
+
+    </div>
+</div>

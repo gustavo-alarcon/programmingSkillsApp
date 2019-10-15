@@ -1,0 +1,23 @@
+
+.fondo , .fondo1 ,.fondo2{
+  background-color:gray;
+}
+
+/* .basic{
+  background: #CC9CFF;
+} */
+.punto{
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}
+h2{
+  text-align: center;
+}
+.icono{
+  font-size: 36px;
+}
+.cabezera{
+  display: grid;
+
+}
