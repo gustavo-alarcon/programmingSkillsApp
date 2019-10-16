@@ -21,3 +21,14 @@ h2{
   display: grid;
 
 }
+
+.ms-card {
+  background:#3c3c3c;
+  opacity:0.8;
+  align-items: center;
+  margin: 45px 8px 0px 8px;
+  padding: 24px 16px;
+  flex:auto 1 1;
+  width: 250px;
+  border-radius: 5px;
+}
