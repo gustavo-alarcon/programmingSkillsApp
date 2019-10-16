@@ -1,7 +1,7 @@
 
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AuthService} from '../../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -11,8 +11,7 @@ import { AuthService} from '../../services/auth.service';
 })
 export class ContenidoComponent {
   option: string = "";
-
-  panelOpenState = false;
+  panelOpenState: boolean = false;
 
   lenguajes = [
     {
@@ -133,15 +132,15 @@ export class ContenidoComponent {
   ];
 
   constructor(public opciones: MatDialog,
-              public auth:AuthService) { }
+    public auth: AuthService) { }
 
   ngOnInit() {
   }
 
   changeColorLanguages(index: number, level: string): void {
     console.log(index, level);
-
     this.lenguajes[index]['level'] = level;
+
   }
   changeColorFrameworks(index: number, level1: string): void {
     console.log(index, level1);
@@ -154,6 +153,8 @@ export class ContenidoComponent {
     this.clouds[index]['level'] = level2;
 
   }
+
+
 }
 
 
