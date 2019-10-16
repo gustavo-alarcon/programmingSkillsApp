@@ -1,72 +1,60 @@
-import { Injectable,NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { User } from '../services/user.model';
+import { Observable, of  } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  userData:any;  // guardar datos del usuario logueado
-
+  user$: Observable<User>
+  authState: any;
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
     private router: Router,
-    public ngZone: NgZone
   ) { 
     // guardo los datos en el localstorage
-    this.afAuth.authState.subscribe(user=>{
-      if(user){
-        this.userData = user;
-        localStorage.setItem('user',JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user'));
-      }else{
-        localStorage.setItem('user',null);
-        JSON.parse(localStorage.getItem('user'));
-      }
-    })
-  }
-
-  // Loguear con Google
-  GoogleAuth(){
-    return this.AuthLogin(new auth.GoogleAuthProvider());
-  }
-  
-  // logica de autentificacion para ejecutar proveedores de auth
-
-  AuthLogin(provider){
-    return this.afAuth.auth.signInWithPopup(provider)
-    .then((result)=>{
-      this.ngZone.run(()=>{
-        this.router.navigate(['login']);
+    this.user$ = this.afAuth.authState.pipe(
+      switchMap(user=>{
+        if(user){
+          // Loguear          
+          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+        }else{
+          return of(null);
+          // desloguear
+        }
       })
-      this.SetUserData(result.user);
-    }).catch((error)=>{
-      window.alert(error)
-    })
+    )
   }
 
-  SetUserData(user){
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.id}`);
-    const userData: User = {
-      uid:user.id,
-      email:user.email,
-      displayName:user.displayName,
-      photoURL:user.photoURL,
-      somethingCustom:user.somethingCustom
-    }
-    return userRef.set(userData, {
-      merge:true
-    })
+  // login con google
+
+  async googleSignin(){
+    const provider = new auth.GoogleAuthProvider();
+    const credential = await this.afAuth.auth.signInWithPopup(provider);
+    return this.updateUserData(credential.user);
   }
-  SignOut() {
-    return this.afAuth.auth.signOut().then(() => {
-      localStorage.removeItem('user');
-      this.router.navigate(['bienvenidos']);
-    })
+
+  private updateUserData(user){
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+
+    const data = {
+      uid : user.uid,
+      email: user.email,
+      displayName:user.displayName,
+      photoURL:user.photoURL
+    }
+    return userRef.set(data,{merge : true});
+  }
+
+  async signOut(){
+    await this.afAuth.auth.signOut();
+    this.router.navigate(['profile'])
   }
 }
