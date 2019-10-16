@@ -19,7 +19,7 @@ export class AuthService {
     private afs: AngularFirestore,
     private router: Router,
   ) { 
-    // guardo los datos en el localstorage
+    
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user=>{
         if(user){
@@ -33,8 +33,11 @@ export class AuthService {
     )
   }
 
-  // login con google
-
+  
+  /**
+   * @desc Login Google
+   * @returns user <Promise>
+   */
   async googleSignin(){
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);

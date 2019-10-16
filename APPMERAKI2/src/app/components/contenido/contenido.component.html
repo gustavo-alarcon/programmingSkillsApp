@@ -10,7 +10,7 @@
         <mat-accordion *ngFor="let item of lenguajes; let i = index" style="align-items: center;margin: auto;">
             <mat-expansion-panel style="margin:4px 0px">
                 <mat-expansion-panel-header>
-                    <div class="punto"
+                    <div class="punto mat-elevation-z8" style="border: solid 2px ghostwhite"
                         [ngClass]="{'w3-green': item['level'] === 'basico', 'w3-amber':  item['level']  === 'intermedio', 'w3-purple':  item['level']  === 'avanzado'}">
                     </div>
                     <mat-panel-title style="justify-content:center">
