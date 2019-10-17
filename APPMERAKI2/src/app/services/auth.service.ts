@@ -19,7 +19,6 @@ export class AuthService {
     private afs: AngularFirestore,
     private router: Router,
   ) { 
-    
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user=>{
         if(user){
@@ -33,7 +32,6 @@ export class AuthService {
     )
   }
 
-  
   /**
    * @desc Login Google
    * @returns user <Promise>
@@ -58,6 +56,7 @@ export class AuthService {
 
   async signOut(){
     await this.afAuth.auth.signOut();
-    this.router.navigate(['/bievenidos'])
+    this.router.navigate(['bienvenidos'])
+
   }
 }

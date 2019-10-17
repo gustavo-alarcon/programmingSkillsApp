@@ -140,6 +140,8 @@ export class ContenidoComponent {
   changeColorLanguages(index: number, level: string): void {
     console.log(index, level);
     this.lenguajes[index]['level'] = level;
+    
+  
 
   }
   changeColorFrameworks(index: number, level1: string): void {

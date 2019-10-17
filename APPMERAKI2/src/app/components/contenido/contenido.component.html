@@ -1,13 +1,10 @@
 <div style="display: flex; flex-wrap:wrap; justify-content: space-evenly; align-items: start; padding: 20px;">
-
     <div class="ms-card">
         <div class="cabezera">
             <img src="../../../assets/imagens/lenguajes.png" style="width: 50px;float: left;margin:auto;">
-            <!--                 <mat-icon class="icono" [inline]="true">computer</mat-icon>-->
             <h2>Lenguajes</h2>
         </div>
-        <!-- ngfor -->
-        <mat-accordion *ngFor="let item of lenguajes; let i = index" style="align-items: center;margin: auto;">
+        <mat-accordion #accordion="matAccordion" [multi]="true" *ngFor="let item of lenguajes; let i = index" style="align-items: center;margin: auto;">
             <mat-expansion-panel  style="margin:4px 0px" >
                 <mat-expansion-panel-header>
                     <div class="punto mat-elevation-z8" style="border: solid 2px ghostwhite"
@@ -20,23 +17,22 @@
                 </mat-expansion-panel-header>
                 <mat-divider class="w3-white"></mat-divider>
                 <mat-panel-description style="justify-content: space-evenly; padding: 8px;" >
-                    <button mat-raised-button (click)="changeColorLanguages(i, 'basico')"
+                    <button mat-raised-button (click)="changeColorLanguages(i, 'basico');accordion.closeAll()"
                         class="w3-green"><b>Basico</b></button>
-                    <button mat-raised-button (click)="changeColorLanguages(i, 'intermedio')"
+                    <button mat-raised-button (click)="changeColorLanguages(i, 'intermedio');accordion.closeAll()"
                         class="w3-orange"><b>Intermedio</b></button>
-                    <button mat-raised-button (click)="changeColorLanguages(i, 'avanzado') && panelOpenState"
+                    <button mat-raised-button (click)="changeColorLanguages(i, 'avanzado');accordion.closeAll()"
                        class="w3-purple">Avanzado</button>
                 </mat-panel-description>
             </mat-expansion-panel>
         </mat-accordion>
     </div>
-
-    <div class="ms-card">
+     <div class="ms-card">
         <div class="cabezera">
             <img src="../../../assets/imagens/cloud.png" style="width: 50px;float: left;margin:auto;">
             <h2>Google. Cloud</h2>
         </div>
-        <mat-accordion *ngFor="let clo of clouds ; let c = index" style="align-items: center;margin: auto;">
+        <mat-accordion  #accordion="matAccordion" [multi]="true" *ngFor="let clo of clouds ; let c = index" style="align-items: center;margin: auto;">
             <mat-expansion-panel style="margin:4px 0px">
                 <mat-expansion-panel-header class="w3-container w3-center-align">
                     <div [ngClass]="{'w3-green': clo['level'] === 'basico', 'w3-amber':clo['level'] === 'intermedio', 'w3-purple':  clo['level'] === 'avanzado'}"
@@ -49,22 +45,21 @@
                 </mat-expansion-panel-header>
                 <mat-divider class="w3-white"></mat-divider>
                 <mat-panel-description style="justify-content: space-evenly; padding: 8px;">
-                    <button mat-raised-button (click)="changeColorClouds(c,'basico')"class="w3-green"><b>Basico</b></button>
-                    <button mat-raised-button (click)="changeColorClouds(c,'intermedio')"class="w3-orange" ><b>Intermedio</b></button>
-                    <button mat-raised-button (click)="changeColorClouds(c,'avanzado')"class="w3-purple"><b>Avanzado</b></button>
+                    <button mat-raised-button (click)="changeColorClouds(c,'basico'); accordion.closeAll()"class="w3-green"><b>Basico</b></button>
+                    <button mat-raised-button (click)="changeColorClouds(c,'intermedio');accordion.closeAll()"class="w3-orange" ><b>Intermedio</b></button>
+                    <button mat-raised-button (click)="changeColorClouds(c,'avanzado');accordion.closeAll()"class="w3-purple"><b>Avanzado</b></button>
                 </mat-panel-description>
             </mat-expansion-panel>
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
             </mat-expansion-panel>
         </mat-accordion>
     </div>
-
     <div class="ms-card">
         <div class="cabezera">
             <img src="../../../assets/imagens/frame.png" style="width: 50px;float: left;margin:auto;">
             <h2>Frameworks</h2>
         </div>
-        <mat-accordion *ngFor="let frame of frameworks ; let f = index">
+        <mat-accordion  #accordion="matAccordion" [multi]="true" *ngFor="let frame of frameworks ; let f = index">
             <mat-expansion-panel style="margin:4px 0px">
                 <mat-expansion-panel-header class="w3-container w3-center-align">
                     <div [ngClass]="{'w3-green': frame['level'] === 'basico', 'w3-amber':frame['level'] === 'intermedio', 'w3-purple':  frame['level'] === 'avanzado'}"
@@ -76,9 +71,9 @@
                 </mat-expansion-panel-header>
                 <mat-divider class="w3-white"></mat-divider>
                 <mat-panel-description  style="justify-content: space-evenly; padding: 8px;">
-                    <button mat-raised-button (click)="changeColorFrameworks(f,'basico')" class="w3-green"><b>Basico</b></button>
-                    <button mat-raised-button (click)="changeColorFrameworks(f,'intermedio')"class="w3-orange"><b>Intermedio</b></button>
-                    <button mat-raised-button (click)="changeColorFrameworks(f,'avanzado')" class="w3-purple"><b>Avanzado</b></button>
+                    <button mat-raised-button (click)="changeColorFrameworks(f,'basico');accordion.closeAll()" class="w3-green"><b>Basico</b></button>
+                    <button mat-raised-button (click)="changeColorFrameworks(f,'intermedio');accordion.closeAll()"class="w3-orange"><b>Intermedio</b></button>
+                    <button mat-raised-button (click)="changeColorFrameworks(f,'avanzado');accordion.closeAll()" class="w3-purple"><b>Avanzado</b></button>
                 </mat-panel-description>
             </mat-expansion-panel>
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">

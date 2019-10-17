@@ -25,20 +25,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { LoginComponent } from './components/login/login.component';
+import { ChartsModule } from 'ng2-charts'
 import { BienvenidosComponent } from './components/bienvenidos/bienvenidos.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
-import { RegistroComponent} from './components/registro/registro.component';
+import { ChartComponent } from './components/chart/chart.component'
 /* Angularx-Social */
-import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
-import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
-import { ProfileComponent } from './components/profile/profile.component';
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,9 +40,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     SidenavComponent,
     LoginComponent,
     BienvenidosComponent,
-    RegistroComponent,
-    ProfileComponent,
-    
+    ChartComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +63,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     MatCheckboxModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
-    AngularFireModule.initializeApp(environment.config)
+    AngularFireModule.initializeApp(environment.config),
+    ChartsModule
 
   ],
   providers: [AngularFirestore],

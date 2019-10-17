@@ -3,10 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { BienvenidosComponent } from './components/bienvenidos/bienvenidos.component';
 import { ContenidoComponent } from './components/contenido/contenido.component';
 import { LoginComponent } from './components/login/login.component';
-import { RegistroComponent } from './components/registro/registro.component';
 import { AuthGuard } from './guards/auth.guard';
-import { combineAll } from 'rxjs/operators';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { ChartComponent } from './components/chart/chart.component';
 
 const routes: Routes = [
   {
@@ -30,13 +29,14 @@ const routes: Routes = [
     component:SidenavComponent,canActivate:[AuthGuard]
   },
   {
+    path:'chart',
+    component:ChartComponent
+  },
+  {
     path:'login',
     component:LoginComponent,canActivate:[AuthGuard]
   },
-  {
-    path:'registro',
-    component:RegistroComponent
-  }
+
 ];
 
 @NgModule({

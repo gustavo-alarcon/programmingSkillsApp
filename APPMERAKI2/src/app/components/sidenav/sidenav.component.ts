@@ -11,6 +11,7 @@ import { User } from '../../services/user.model';
 })
 export class SidenavComponent implements OnInit, OnDestroy {
 
+  ​opened: boolean;
   private user: User;
 
   mobileQuery: MediaQueryList;
@@ -25,7 +26,7 @@ export class SidenavComponent implements OnInit, OnDestroy {
     public auth: AuthService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
+    this.mobileQuery.addListener(this._mobileQueryListener);      
   }
 
   ngOnInit() {

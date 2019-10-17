@@ -1,9 +1,7 @@
-<mat-card style="opacity:0.8;position: relative;" class="w3-container w3-margin w3-padding">
-    <div class="textos" class="w3-margin">
-
-
-        <h1>Bienvenidos</h1>
-
+<div style="opacity:0.8;position: relative;height: auto;" class="w3-container w3-margin w3-padding mat-elevation-z8">
+   
+    <div class="w3-margin">
+        <h2>Bienvenidos</h2>
         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident dolorem id consequuntur esse, aliquam
             quaerat, fugiat, sit eaque natus ipsum cupiditate repellendus blanditiis totam ut. Porro debitis sequi est
             necessitatibus. Lorem, ipsum dolor
@@ -13,34 +11,21 @@
             adipisicing elit. Ducimus, dolor ipsa. Velit consequuntur perferendis dolore maxime! Optio quis quod nulla
             quae provident non! Aliquid consequatur ea, blanditiis provident dolor accusantium!
         </p>
-
         <img src="../../../assets/imagens/meraki2.png" width="250px;" style="opacity:0.4;float: right; margin: auto;">
-
     </div>
-    <div *ngIf="auth.user$ | async; else guest">
+    <div [hidden]="auth.user$" *ngIf="auth.user$ | async; else guest">
         <div *ngIf="auth.user$ | async as user">
             <h3>Bienvenido {{ user.displayName }}</h3>
             <img width="50px;" [src]="user.photoURL">
             <p>Correo: {{user.email}}</p>
             <p>ID: {{ user.uid }}</p>
-            <button mat-button color="primary" (click)="auth.signOut()">Cerrar Sesion</button>
+            <button class="boton"  mat-button color="primary" (click)="auth.signOut()"><b> Cerrar Sesion</b> </button>
         </div>
     </div>
     <ng-template #guest>
-        <h3>Empezemos!</h3>
-        <p>Click para Ingresar</p>
-        <button mat-button color="warn" (click)="auth.googleSignin()">
-            <i class="fa fa-google"></i> Connect Google
+        <h4>Empezemos!</h4>
+        <button class="boton" mat-button (click)="auth.googleSignin()">
+            <i class="fa fa-google"></i><b> Ingresar</b> 
         </button>
     </ng-template>
-
-
-
-    <!-- User NOT logged in -->
-
-
-    <!-- User logged in -->
-    <!-- <ng-template #authenticated> -->
-
-    <!-- </ng-template> -->
-</mat-card>
+</div>

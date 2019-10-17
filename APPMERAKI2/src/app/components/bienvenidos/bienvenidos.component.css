@@ -1,6 +1,3 @@
-h1 {
-    text-align: center;
-}
 
 p {
     justify-content: baseline;
@@ -9,6 +6,11 @@ p {
 }
 
 .boton {
-    width: 100%;
+    width: autos;
     justify-content: center;
+    background-color: #579E7B;
+    color:white;
+}
+.textos{
+    position: relative;
 }
