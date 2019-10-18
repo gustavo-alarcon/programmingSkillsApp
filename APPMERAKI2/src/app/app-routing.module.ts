@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ChartComponent } from './components/chart/chart.component';
+import { Chart2Component } from './components/chart2/chart2.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path:'chart',
     component:ChartComponent
+  },
+  {
+    path:'chart2',
+    component:Chart2Component
   },
   {
     path:'login',

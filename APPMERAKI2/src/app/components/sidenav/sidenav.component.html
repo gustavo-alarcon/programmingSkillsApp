@@ -5,25 +5,24 @@
         </button>
         <img src="../../../assets/imagens/meraki.png" width="120px">
         <div class="usuario">
-            <button mat-stroked-button [matMenuTriggerFor]="menu">
 
-                <span *ngIf="auth.user$ | async as user; else icon" style="margin-right: 8px">
-                    <img [src]="(auth.user$ | async).photoURL" alt="profile photo"
-                        style="width:25px; border-radius: 50%;">
-                </span>
 
-                <ng-template #icon>
-                    <mat-icon class="usuario">account_circle</mat-icon>
-                </ng-template>
-                <span>{{(auth.user$ | async).displayName}}</span>
-                <mat-menu #authenticated #menu="matMenu" activa>
-                    <button mat-menu-item routerLink="login">Usuario</button>
-                    <button mat-menu-item *ngIf="auth.user$ | async as user" class="w3-red"
-                        (click)="auth.signOut()">Cerrar Sesión</button>
-                </mat-menu>
+            <button mat-stroked-button *ngIf="auth.user$ | async as user; else icon" style="margin-right: 8px"
+                [matMenuTriggerFor]="menu">
+                <img [src]="user.photoURL" alt="profile photo" style="width:25px; border-radius: 50%; margin-right: 8px">
+                <span>{{user.displayName}}</span>
             </button>
 
+            <ng-template #icon>
+                <mat-icon class="usuario">account_circle</mat-icon>
+            </ng-template>
+
         </div>
+        <mat-menu #menu="matMenu" activa>
+            <button mat-menu-item routerLink="login">Usuario</button>
+            <button mat-menu-item *ngIf="auth.user$ | async as user" class="w3-red"
+                (click)="auth.signOut()">Cerrar Sesión</button>
+        </mat-menu>
     </mat-toolbar>
     <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
         <mat-sidenav style="width: 200px;background-color:#3c3c3c;" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"

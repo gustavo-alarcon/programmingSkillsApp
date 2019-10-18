@@ -16,7 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
@@ -31,7 +31,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
-import { ChartComponent } from './components/chart/chart.component'
+import { ChartComponent } from './components/chart/chart.component';
+import { Chart2Component } from './components/chart2/chart2.component'
 /* Angularx-Social */
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ChartComponent } from './components/chart/chart.component'
     SidenavComponent,
     LoginComponent,
     BienvenidosComponent,
-    ChartComponent
+    ChartComponent,
+    Chart2Component
   ],
   imports: [
     BrowserModule,
@@ -64,7 +66,8 @@ import { ChartComponent } from './components/chart/chart.component'
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.config),
-    ChartsModule
+    ChartsModule,
+    ReactiveFormsModule
 
   ],
   providers: [AngularFirestore],

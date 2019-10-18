@@ -1,24 +1,25 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RadialChartOptions, ChartDataSets, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { DataService } from '../../services/data.service'
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { DataService } from './../../services/data.service';
 
 @Component({
-  selector: 'app-chart',
-  templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.css']
+  selector: 'app-chart2',
+  templateUrl: './chart2.component.html',
+  styleUrls: ['./chart2.component.css']
 })
-export class ChartComponent implements OnInit {
+export class Chart2Component implements OnInit {
 
   public radarChartOptions: RadialChartOptions = {
     responsive: true,
-  };
 
-  public radarChartLabels: Label[] = ['BackEnd', 'FrontEnd', 'Cloud', 'Frameworks',];
+  };
+  public radarChartLabels: Label[] = ['BackEnd', 'FrontEnd', 'Cloud', 'Frameworks'];
 
   public radarChartData: ChartDataSets[] = [
-    { data: [0, 0, 0, 0], label: 'Seria A' }
+    { data: [0, 0, 0, 0], label: 'Seria A' },
+    { data: [0, 0, 0, 0], label: 'Seria B' }
   ];
 
   public radarChartType: ChartType = 'radar';
@@ -29,7 +30,7 @@ export class ChartComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     public data: DataService) {
-
+      this.radarChartData[0] = this.data.dataChart;
   }
 
   ngOnInit() {
@@ -45,17 +46,16 @@ export class ChartComponent implements OnInit {
     });
   }
 
-  guardar(): void {
-    this.data.guardarChart1(
+  guardar() {
+    this.radarChartData[1].data = [
       this.dataFormGroup.value['input1'],
       this.dataFormGroup.value['input2'],
       this.dataFormGroup.value['input3'],
-      this.dataFormGroup.value['input4'],
-    )
+      this.dataFormGroup.value['input4']
+    ];
   }
-
   ShowHideButton() {
     this.showMainContent = this.showMainContent ? false : true;
-  }
 
+  }
 }

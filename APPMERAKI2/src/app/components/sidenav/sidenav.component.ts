@@ -30,12 +30,6 @@ export class SidenavComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    this.auth.authState.subscribe((user) => {
-      this.user = user;
-      console.log(this.user);
-    })
   }
 
   ngOnDestroy(): void {
